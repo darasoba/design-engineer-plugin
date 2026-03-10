@@ -1,0 +1,22 @@
+{
+  "name": "design-engineer",
+  "version": "1.0.0",
+  "description": "Design engineering craft for Claude Code — build interfaces with interaction quality, motion, and invisible details that make UIs feel alive.",
+  "author": {
+    "name": "Israel Sobaloju"
+  },
+  "repository": "https://github.com/israelsobaloju/design-engineer-plugin",
+  "license": "MIT",
+  "keywords": [
+    "design-engineering",
+    "interaction-design",
+    "micro-interactions",
+    "animation",
+    "motion-design",
+    "ui-craft",
+    "frontend",
+    "web-interface",
+    "design-systems",
+    "haptics"
+  ]
+}
