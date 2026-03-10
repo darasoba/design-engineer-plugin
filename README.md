@@ -28,7 +28,7 @@ When you ask Claude Code to build UI components, animations, or interactive expe
 Or clone and use locally:
 
 ```bash
-git clone https://github.com/israelsobaloju/design-engineer-plugin.git
+git clone https://github.com/darasoba/design-engineer-plugin.git
 claude --plugin-dir ./design-engineer-plugin
 ```
 
