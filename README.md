@@ -1,12 +1,12 @@
-# Design Engineer Plugin for Claude Code
+# Design Engineer — AI Rules for Every Tool
 
-A Claude Code skill that brings **design engineering craft** to your development workflow — the intersection of design and code, focused on interaction quality, motion, and the invisible details that make interfaces feel alive.
+Bring **design engineering craft** to any AI coding assistant — the intersection of design and code, focused on interaction quality, motion, and the invisible details that make interfaces feel alive.
 
 Inspired by the design engineering community and resources curated at [desengs.com](https://desengs.com/).
 
 ## What It Does
 
-When you ask Claude Code to build UI components, animations, or interactive experiences, this skill activates and guides it to:
+When your AI builds UI components, animations, or interactive experiences, these rules guide it to:
 
 - Apply proper **timing and easing** (no more `linear` or default transitions)
 - Follow the **12 Principles of Animation** adapted for UI
@@ -18,7 +18,9 @@ When you ask Claude Code to build UI components, animations, or interactive expe
 - Think in **design systems** (tokens, variants, composition)
 - Prioritize **performance** (compositor-only animations, containment, intersection observers)
 
-## Install
+## Install for Your AI Tool
+
+### Claude Code (Plugin)
 
 ```bash
 # From the Claude Code CLI
@@ -32,15 +34,81 @@ git clone https://github.com/darasoba/design-engineer-plugin.git
 claude --plugin-dir ./design-engineer-plugin
 ```
 
-## Triggers
+### Cursor
 
-The skill activates when you mention:
+Copy `rules/.cursorrules` to your project root:
 
-- "design engineer", "interaction design", "micro-interactions"
-- "craft", "polish", "delight", "feel right"
-- "animation", "motion design", "haptics"
-- "toast", "command palette", "design system components"
-- Or any request for interfaces that feel alive and meticulously detailed
+```bash
+cp rules/.cursorrules /path/to/your/project/.cursorrules
+```
+
+Or set it globally in Cursor Settings > Rules > User Rules.
+
+### Windsurf
+
+Copy `rules/.windsurfrules` to your project root:
+
+```bash
+cp rules/.windsurfrules /path/to/your/project/.windsurfrules
+```
+
+### GitHub Copilot
+
+Copy to your repo's `.github/` directory:
+
+```bash
+mkdir -p /path/to/your/project/.github
+cp rules/copilot-instructions.md /path/to/your/project/.github/copilot-instructions.md
+```
+
+### Cline (VS Code)
+
+Copy `rules/.clinerules` to your project root:
+
+```bash
+cp rules/.clinerules /path/to/your/project/.clinerules
+```
+
+### ChatGPT
+
+1. Open ChatGPT > Settings > Personalization > Custom Instructions
+2. Paste the contents of `rules/chatgpt-custom-instructions.md` into "How would you like ChatGPT to respond?"
+
+Or use it as the system prompt when creating a **custom GPT**.
+
+### Claude Projects (claude.ai)
+
+1. Open your Claude Project > Project Settings
+2. Paste the contents of `rules/system-prompt.md` into the project instructions
+
+### Any Other AI (Universal)
+
+Use `rules/system-prompt.md` — it works as a system prompt for:
+- **OpenAI API / Playground** — paste as system message
+- **Local LLMs** (Ollama, LM Studio, llama.cpp) — use as system prompt
+- **Aider** — save as `.aider.conf.yml` convention or paste in chat
+- **Continue.dev** — add to `.continuerules`
+- **Any AI tool** that accepts custom instructions or a system prompt
+
+## What's Inside
+
+```
+design-engineer-plugin/
+├── .claude-plugin/
+│   └── plugin.json                        # Claude Code plugin manifest
+├── skills/
+│   └── design-engineer/
+│       └── SKILL.md                       # Claude Code skill
+├── rules/
+│   ├── .cursorrules                       # Cursor
+│   ├── .windsurfrules                     # Windsurf
+│   ├── .clinerules                        # Cline
+│   ├── copilot-instructions.md            # GitHub Copilot
+│   ├── chatgpt-custom-instructions.md     # ChatGPT / Custom GPTs
+│   └── system-prompt.md                   # Universal (any AI)
+├── LICENSE
+└── README.md
+```
 
 ## Examples
 
@@ -54,18 +122,6 @@ The skill activates when you mention:
 > Make this button feel more responsive — add proper interaction states
 
 > Build a modal with spring physics and focus trapping
-```
-
-## What's Inside
-
-```
-design-engineer-plugin/
-├── .claude-plugin/
-│   └── plugin.json
-├── skills/
-│   └── design-engineer/
-│       └── SKILL.md
-└── README.md
 ```
 
 ## Inspired By
