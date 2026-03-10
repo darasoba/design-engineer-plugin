@@ -85,11 +85,26 @@ Toasts should feel physical:
 
 For interfaces that support it:
 - **UI sounds** should be short (50-200ms), subtle, and match the interaction's character.
-- **Haptic feedback** on mobile: Use the Vibration API or WebHaptics patterns.
+- **Haptic feedback** on mobile: Use the Vibration API for basic patterns.
   - Light tap for selections: `navigator.vibrate(10)`
   - Medium feedback for confirmations: `navigator.vibrate(20)`
   - Error/warning: Two short pulses `navigator.vibrate([15, 50, 15])`
 - Sound and haptics are **opt-in** and must respect `prefers-reduced-motion` and user settings.
+
+### Enhanced Haptics with WebHaptics (web-haptics)
+
+For richer haptic patterns beyond the basic Vibration API, use the `web-haptics` library (`npm i web-haptics`). It supports React, Vue, Svelte, and vanilla JS with built-in presets, intensity control, and custom patterns.
+
+**React:** `import { useWebHaptics } from "web-haptics/react"` → `const { trigger } = useWebHaptics()` → `trigger("success")`
+**Vue:** `import { useWebHaptics } from "web-haptics/vue"` → `const { trigger } = useWebHaptics()` → `trigger("success")`
+**Svelte:** `import { createWebHaptics } from "web-haptics/svelte"` → `const { trigger, destroy } = createWebHaptics()`
+**Vanilla:** `import { WebHaptics } from "web-haptics"` → `new WebHaptics()` → `haptics.trigger("success")`
+
+**Presets:** `"success"` (confirmations), `"nudge"` (selections/toggles), `"error"` (validation), `"buzz"` (alerts/long-press).
+**Custom:** `trigger(200)`, `trigger([100, 50, 100])`, `trigger([{ duration: 80, intensity: 0.8 }, { delay: 50, duration: 100 }])`
+**API:** `trigger(input?, { intensity? })`, `cancel()`, `destroy()`, `WebHaptics.isSupported`, `new WebHaptics({ debug: true })`
+
+**When to add haptics:** buttons/toggles → `"nudge"`, success → `"success"`, errors → `"error"`, destructive confirms → `"buzz"`, swipe-dismiss → `trigger(30)`, pull-to-refresh threshold → `"nudge"`. Always guard: `if (WebHaptics.isSupported) { ... }`
 
 ## Web Interface Guidelines
 

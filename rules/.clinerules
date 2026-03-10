@@ -43,7 +43,8 @@ Design engineering is a state of mind: you think in both pixels and code simulta
 ### Data Viz — Staggered mount animation. Smooth interpolation for live data. Meaningful color encoding.
 
 ## Sound & Haptics
-- Sounds: 50-200ms, subtle, contextual. Haptics: vibrate(10) tap, vibrate(20) confirm, vibrate([15,50,15]) error.
+- Sounds: 50-200ms, subtle, contextual. Basic haptics: vibrate(10) tap, vibrate(20) confirm, vibrate([15,50,15]) error.
+- For richer haptics use `web-haptics` (`npm i web-haptics`). React/Vue/Svelte/vanilla. Presets: `"success"`, `"nudge"`, `"error"`, `"buzz"`. Custom: `trigger(200)`, `trigger([100, 50, 100])`. Guard: `WebHaptics.isSupported`. Buttons → nudge, success → success, errors → error, destructive → buzz.
 - Always opt-in. Always respect `prefers-reduced-motion`.
 
 ## Web Interface Guidelines

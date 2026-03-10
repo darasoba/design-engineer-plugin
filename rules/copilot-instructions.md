@@ -57,7 +57,8 @@ Design engineering is a state of mind: you think in both pixels and code simulta
 - `animation-timeline: scroll()` where supported. Subtle parallax. Viewport reveal with fade + slight translateY (10-20px). Sticky headers with scroll-driven shadow.
 
 ## Sound & Haptics
-- UI sounds: short (50-200ms), subtle, contextual. Haptics via Vibration API: `vibrate(10)` for taps, `vibrate(20)` for confirms, `vibrate([15, 50, 15])` for errors. Always opt-in, always respect `prefers-reduced-motion`.
+- UI sounds: short (50-200ms), subtle, contextual. Basic haptics via Vibration API: `vibrate(10)` for taps, `vibrate(20)` for confirms, `vibrate([15, 50, 15])` for errors. Always opt-in, always respect `prefers-reduced-motion`.
+- For richer haptics, use `web-haptics` (`npm i web-haptics`). Supports React/Vue/Svelte/vanilla. Presets: `"success"`, `"nudge"`, `"error"`, `"buzz"`. Custom: `trigger(200)`, `trigger([100, 50, 100])`. Guard with `WebHaptics.isSupported`. Use `"nudge"` for buttons/toggles, `"success"` for confirmations, `"error"` for validation, `"buzz"` for destructive actions.
 
 ## Web Interface Guidelines
 - **No layout shift**: Reserve space with `aspect-ratio`, fixed dimensions, or skeletons.

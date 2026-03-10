@@ -99,11 +99,92 @@ Inspired by the craft of Sonner — toasts should feel physical:
 
 For interfaces that support it:
 - **UI sounds** should be short (50-200ms), subtle, and match the interaction's character.
-- **Haptic feedback** on mobile: Use the Vibration API or WebHaptics patterns.
+- **Haptic feedback** on mobile: Use the Vibration API for basic patterns.
   - Light tap for selections: `navigator.vibrate(10)`
   - Medium feedback for confirmations: `navigator.vibrate(20)`
   - Error/warning: Two short pulses `navigator.vibrate([15, 50, 15])`
 - Sound and haptics are **opt-in** and must respect `prefers-reduced-motion` and user settings.
+
+### Enhanced Haptics with WebHaptics (web-haptics)
+
+For richer haptic patterns beyond the basic Vibration API, use the `web-haptics` library (`npm i web-haptics`). It supports React, Vue, Svelte, and vanilla JS with built-in presets, intensity control, and custom patterns.
+
+**React:**
+```tsx
+import { useWebHaptics } from "web-haptics/react";
+
+function App() {
+  const { trigger } = useWebHaptics();
+  return <button onClick={() => trigger("success")}>Tap me</button>;
+}
+```
+
+**Vue:**
+```vue
+<script setup>
+import { useWebHaptics } from "web-haptics/vue";
+const { trigger } = useWebHaptics();
+</script>
+<template>
+  <button @click="trigger('success')">Tap me</button>
+</template>
+```
+
+**Svelte:**
+```svelte
+<script>
+import { createWebHaptics } from "web-haptics/svelte";
+import { onDestroy } from "svelte";
+const { trigger, destroy } = createWebHaptics();
+onDestroy(destroy);
+</script>
+<button on:click={() => trigger("success")}>Tap me</button>
+```
+
+**Vanilla JS:**
+```ts
+import { WebHaptics } from "web-haptics";
+const haptics = new WebHaptics();
+haptics.trigger("success");
+```
+
+**Built-in presets** — use these for consistent haptic language:
+- `"success"` — Two taps indicating success (confirmations, completed actions)
+- `"nudge"` — Strong tap + soft tap (selections, toggles, tab switches)
+- `"error"` — Three sharp taps (validation errors, failed actions)
+- `"buzz"` — Long vibration (alerts, long-press feedback)
+
+**Custom patterns** for fine-grained control:
+```ts
+trigger(200);                    // single vibration in ms
+trigger([100, 50, 100]);         // alternating on/off durations
+trigger([                        // full Vibration[] with intensity
+  { duration: 80, intensity: 0.8 },
+  { delay: 50, duration: 100 }
+]);
+```
+
+**API essentials:**
+- `trigger(input?, { intensity? })` — fire haptic feedback (intensity 0–1, default 0.5)
+- `cancel()` — stop current pattern
+- `destroy()` — clean up (call on unmount)
+- `WebHaptics.isSupported` — check device support before enabling
+- `new WebHaptics({ debug: true })` — enable audio fallback for desktop testing
+
+**When to add haptics:**
+- Button presses and toggle switches → `"nudge"`
+- Form submission success → `"success"`
+- Validation errors → `"error"`
+- Long-press actions or destructive confirmations → `"buzz"`
+- Swipe-to-dismiss completions → short custom pulse `trigger(30)`
+- Pull-to-refresh threshold reached → `"nudge"`
+
+**Always guard with feature detection:**
+```ts
+if (WebHaptics.isSupported) {
+  haptics.trigger("success");
+}
+```
 
 ## Web Interface Guidelines
 

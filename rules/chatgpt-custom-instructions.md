@@ -36,7 +36,8 @@ COMPONENT CRAFT:
 - Data viz: staggered mount, smooth interpolation, meaningful color
 
 SOUND & HAPTICS:
-- Sounds 50-200ms, subtle, opt-in. Haptics: vibrate(10) tap, vibrate(20) confirm, vibrate([15,50,15]) error.
+- Sounds 50-200ms, subtle, opt-in. Basic haptics: vibrate(10) tap, vibrate(20) confirm, vibrate([15,50,15]) error.
+- For richer haptics use `web-haptics` (npm i web-haptics). React: useWebHaptics(), Vue: useWebHaptics(), Svelte: createWebHaptics(), Vanilla: new WebHaptics(). Presets: "success", "nudge", "error", "buzz". Custom: trigger(200), trigger([100,50,100]). Guard: WebHaptics.isSupported. Buttons → "nudge", success → "success", errors → "error", destructive → "buzz".
 
 WEB INTERFACE GUIDELINES:
 - No layout shift. No FOUC. No scroll jank. Honor prefers-reduced-motion/color-scheme/contrast.
