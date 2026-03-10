@@ -18,19 +18,21 @@ When your AI builds UI components, animations, or interactive experiences, these
 - Think in **design systems** (tokens, variants, composition)
 - Prioritize **performance** (compositor-only animations, containment, intersection observers)
 
-## Install for Your AI Tool
+## Quick Install (All AI Tools)
+
+One command installs the skill across **all your AI agents** — Claude Code, Cursor, Codex, Gemini CLI, OpenCode, Amp, and more:
+
+```bash
+npx skills add darasoba/design-engineer-plugin@design-engineer
+```
+
+Browse on the skills registry: [skills.sh](https://skills.sh/)
+
+## Manual Install by Tool
 
 ### Claude Code (Plugin)
 
 ```bash
-# From the Claude Code CLI
-/plugin install design-engineer
-```
-
-Or clone and use locally:
-
-```bash
-git clone https://github.com/darasoba/design-engineer-plugin.git
 claude --plugin-dir ./design-engineer-plugin
 ```
 
